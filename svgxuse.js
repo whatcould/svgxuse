@@ -100,9 +100,10 @@
             function attrUpdateFunc(spec) {
                 return function () {
                     if (cache[spec.base] !== true) {
-                        spec.useEl.setAttributeNS(xlinkNS, "xlink:href", "#" + spec.hash);
+                        var noUsage = spec.hash.replace(/\-usage/g, "")
+                        spec.useEl.setAttributeNS(xlinkNS, "xlink:href", "#" + noUsage);
                         if (spec.useEl.hasAttribute("href")) {
-                            spec.useEl.setAttribute("href", "#" + spec.hash);
+                            spec.useEl.setAttribute("href", "#" + noUsage);
                         }
                     }
                 };
